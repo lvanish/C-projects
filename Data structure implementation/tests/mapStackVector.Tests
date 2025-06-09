@@ -1,0 +1,142 @@
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ConsoleApp1;
+ 
+namespace ConsoleApp1.Tests
+{
+    [TestClass]
+    public class Test1
+    {
+        [TestMethod]
+        public void MapTestInsertKey()
+        {
+            MyMap map = new MyMap();
+            map.insert(10, "ten");
+            Assert.IsTrue(map.containsKey(10));
+        }
+ 
+        [TestMethod]
+        public void MapTestInsertValue()
+        {
+            MyMap map = new MyMap();
+            map.insert(9, "nine");
+            Assert.IsTrue(map.containsValue("nine"));
+        }
+ 
+        [TestMethod]
+        public void MapTestDelete()
+        {
+            MyMap map = new MyMap();
+            map.insert(5, "five");
+            map.delete(5);
+            Assert.IsFalse(map.containsKey(5));
+        }
+ 
+        [TestMethod]
+        public void MapTestInsertOutofBound()
+        {
+            MyMap map = new MyMap();
+            map.insert(101, "oneoone");
+            Assert.IsFalse(map.containsKey(101));
+        }
+ 
+        [TestMethod]
+        public void StackTestPush()
+        {
+            MyStack stk = new MyStack();
+            stk.push(10);
+            int top = stk.peek();
+            Assert.AreEqual(10,top);            
+        }
+ 
+        [TestMethod]
+        public void StackTestPopEmpty()
+        {
+            MyStack stk = new MyStack();
+            stk.pop();
+            int top = stk.peek();
+            Assert.AreEqual(-1, top);
+        }
+ 
+        [TestMethod]
+        public void StackTestPop()
+        {
+            MyStack stk = new MyStack();
+            stk.push(20);
+            stk.push(40);
+            stk.pop();
+            int top = stk.peek();
+            Assert.AreEqual(20, top);
+        }
+        [TestMethod]
+        public void StackTestPeekEmpty()
+        {
+            MyStack stk = new MyStack();
+            int top = stk.peek();
+            Assert.AreEqual(-1, top);
+        }
+ 
+        [TestMethod]
+        public void StackTestPeek()
+        {
+            MyStack stk = new MyStack();
+            stk.push(20);
+            stk.push(40);
+            stk.pop();
+            int top = stk.peek();
+            Assert.AreEqual(20, top);
+        }
+ 
+        [TestMethod]
+        public void VectorAdd()
+        {
+            MyVector vec = new MyVector();
+            vec.add(10);
+            vec.add(20);
+            Assert.AreEqual(2, vec.size());
+        }
+ 
+        [TestMethod]
+        public void VectorPop()
+        {
+            MyVector vec = new MyVector();
+            vec.add(10);
+            vec.add(20);
+            vec.pop_back();
+            Assert.AreEqual(1, vec.size());
+        }
+ 
+        [TestMethod]
+        public void VectorREmoveElement()
+        {
+            MyVector vec = new MyVector();
+            vec.add(10);
+            vec.add(20);
+            bool res = vec.remove(10);
+            Assert.IsTrue(res);
+            Assert.AreEqual(1, vec.size());
+        }
+ 
+        [TestMethod]
+        public void VectorREmoveNonExistingElement()
+        {
+            MyVector vec = new MyVector();
+            vec.add(10);
+            vec.add(20);
+            bool res = vec.remove(50);
+            Assert.IsFalse(res);
+            Assert.AreEqual(2, vec.size());
+        }
+ 
+        [TestMethod]
+        public void VectorTestResize()
+        {
+            MyVector vec = new MyVector();
+            vec.add(10);
+            vec.add(20);
+            vec.add(10);
+            vec.add(20);
+ 
+            Assert.AreEqual(4, vec.size());
+        }
+    }
+}
